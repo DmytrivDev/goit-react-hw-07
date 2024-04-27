@@ -4,7 +4,7 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { nanoid } from "nanoid";
 
-import { addContact } from "../../redux/contactsSlice";
+import { addContact } from "../../redux/contactsOps";
 
 import css from "./ContactForm.module.scss";
 
@@ -34,7 +34,6 @@ function ContactForm() {
 
   const hendleSubmit = (values, actions) => {
     const newContact = {
-      id: nanoid(),
       name: values.name,
       number: values.phone,
     };
