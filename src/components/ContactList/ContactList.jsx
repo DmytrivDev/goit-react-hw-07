@@ -2,12 +2,13 @@ import { useSelector } from "react-redux";
 
 import Contact from "./Contact/Contact";
 
-import { selectFilteredContacts } from "../../redux/selectors";
+import { selectContacts, selectFilteredContacts } from "../../redux/selectors";
 
 import css from "./ContactList.module.scss";
 
 function ContactList() {
-  const { items, loading, error } = useSelector(selectFilteredContacts);
+  const { loading, error } = useSelector(selectContacts);
+  const contactItems = useSelector(selectFilteredContacts);
   // const filterWord = useSelector(selectorFilter);
 
   // const visibleContacts = contacts.filter((contact) =>
@@ -22,9 +23,9 @@ function ContactList() {
       {error && !loading && (
         <div className={css.contactsList}>{error}</div>
       )}
-      {items && !loading && (
+      {contactItems && !loading && (
         <ul className={css.contactsList}>
-          {items.map((contact) => {
+          {contactItems.map((contact) => {
             return <Contact key={contact.id} contact={contact} />;
           })}
         </ul>
